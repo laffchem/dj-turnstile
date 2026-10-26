@@ -2,12 +2,9 @@ name: Tests
 
 on:
   push:
-    branches: [main]
+    branches: [main, update-tests]
   pull_request:
-
-permissions:
-  contents: read
-  checks: write
+    branches: [main]
 
 jobs:
   test:
@@ -15,24 +12,26 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        django: ["52", "60"]
+        python-version: ['3.10', '3.11', '3.12', '3.13']
+        django-version: ['~=5.2.0', '~=6.0.0', '~=6.1.0']
+        exclude:
+          # Django 6.0 and 6.1 require Python 3.12+
+          - python-version: '3.10'
+            django-version: '~=6.0.0'
+          - python-version: '3.10'
+            django-version: '~=6.1.0'
+          - python-version: '3.11'
+            django-version: '~=6.0.0'
+          - python-version: '3.11'
+            django-version: '~=6.1.0'
+
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v7
+      - uses: astral-sh/setup-uv@v3
         with:
-          python-version: "3.13"
+          enable-cache: true
 
-      - name: Install tox
-        run: pip install tox
+      - run: uv python install ${{ matrix.python-version }}
 
-      - name: Run tests (Django ${{ matrix.django }})
-        run: tox -e django${{ matrix.django }}
-
-      - name: Test report
-        uses: dorny/test-reporter@v3
-        if: ${{ !cancelled() }}
-        with:
-          name: Django ${{ matrix.django }} test results
-          path: test-report.xml
-          reporter: python-xunit
+      - run: uv run --python ${{ matrix.python-version }} --group dev --with "django${{ matrix.django-version }}" pytest
