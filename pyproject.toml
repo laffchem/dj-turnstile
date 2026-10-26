@@ -7,7 +7,7 @@ name = "django-cf-turnstile"
 version = "0.1.0"
 description = "A reusable Cloudflare Turnstile app for Django"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.10"
 license = { text = "MIT" }
 classifiers = [
     "License :: OSI Approved :: MIT License",
