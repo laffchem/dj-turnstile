@@ -1,3 +1,6 @@
+import pytest
+from django.core.exceptions import ImproperlyConfigured
+
 from django_cf_turnstile.widgets import TurnstileWidget
 
 
@@ -19,3 +22,38 @@ def test_value_from_datadict():
     }
     value = widget.value_from_datadict(mock_post_data, None, "turnstile")
     assert value == "intercepted_token"
+
+
+def test_missing_sitekey_raises(settings):
+    del settings.TURNSTILE_SITEKEY
+    with pytest.raises(ImproperlyConfigured, match="TURNSTILE_SITEKEY"):
+        TurnstileWidget().get_context("t", None, {})
+
+
+def test_testing_mode_uses_dummy_sitekey(settings):
+    del settings.TURNSTILE_SITEKEY
+    settings.TURNSTILE_TESTING = True
+    context = TurnstileWidget().get_context("t", None, {})
+    assert context["widget"]["sitekey"] == "1x00000000000000000000AA"
+
+
+def test_options_render_as_data_attrs_and_api_params():
+    widget = TurnstileWidget(
+        action="login",
+        theme="dark",
+        size="compact",
+        language="de",
+        sitekey="mine",
+        api_params={"render": "explicit"},
+    )
+    html = widget.render("turnstile", None)
+    assert 'data-theme="dark"' in html
+    assert 'data-size="compact"' in html
+    assert 'data-language="de"' in html
+    assert 'data-action="login"' in html
+    assert 'data-sitekey="mine"' in html
+    assert "api.js?render\\u003Dexplicit" in html
+
+
+def test_no_required_attribute():
+    assert TurnstileWidget().use_required_attribute(None) is False
