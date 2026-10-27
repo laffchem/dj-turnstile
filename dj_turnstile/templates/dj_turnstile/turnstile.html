@@ -1,14 +1,4 @@
-<script>
-  (function () {
-    if (document.getElementById("cf-turnstile-api")) return;
-    var s = document.createElement("script");
-    s.id = "cf-turnstile-api";
-    s.src = "{{ widget.api_url|escapejs }}";
-    s.async = true;
-    s.defer = true;
-    document.head.appendChild(s);
-  })();
-</script>
+<script src="{{ widget.api_url }}" async defer></script>
 <div class="cf-turnstile"
      data-sitekey="{{ widget.sitekey }}"
      {% include "django/forms/widgets/attrs.html" %}></div>

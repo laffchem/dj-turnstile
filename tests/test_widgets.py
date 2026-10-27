@@ -52,7 +52,7 @@ def test_options_render_as_data_attrs_and_api_params():
     assert 'data-language="de"' in html
     assert 'data-action="login"' in html
     assert 'data-sitekey="mine"' in html
-    assert "api.js?render\\u003Dexplicit" in html
+    assert "api.js?render=explicit" in html
 
 
 def test_no_required_attribute():
