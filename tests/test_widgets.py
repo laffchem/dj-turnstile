@@ -1,7 +1,7 @@
 import pytest
 from django.core.exceptions import ImproperlyConfigured
 
-from django_cf_turnstile.widgets import TurnstileWidget
+from dj_turnstile.widgets import TurnstileWidget
 
 
 def test_widget_context_contains_sitekey(settings):

@@ -1,2 +1,2 @@
 include README.md
-recursive-include django_cf_turnstile/templates *
+recursive-include dj_turnstile/templates *

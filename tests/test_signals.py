@@ -1,5 +1,5 @@
-from django_cf_turnstile.fields import TurnstileField
-from django_cf_turnstile.signals import turnstile_validation_complete
+from dj_turnstile.fields import TurnstileField
+from dj_turnstile.signals import turnstile_validation_complete
 
 
 def test_signal_sent_with_response_data(settings, mock_post):

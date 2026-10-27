@@ -115,6 +115,34 @@ wheels = [
 ]
 
 [[package]]
+name = "dj-turnstile"
+version = "0.2.0"
+source = { editable = "." }
+dependencies = [
+    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "django", version = "6.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+    { name = "niquests" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "pytest" },
+    { name = "pytest-django" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "django", specifier = ">=5.2" },
+    { name = "niquests", specifier = ">=3.21.2" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "pytest", specifier = ">=9.1.1" },
+    { name = "pytest-django", specifier = ">=4.14.0" },
+]
+
+[[package]]
 name = "django"
 version = "5.2.18"
 source = { registry = "https://pypi.org/simple" }
@@ -146,34 +174,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/e2/42/6cb20996733984c1f6661daeda3877990836c76c633c6c8879d39f7120eb/django-6.1.tar.gz", hash = "sha256:86a2aacd59b817e4d6ac2ebfe22356c58f66f7b24e503f71b7c2fead677ee48b", size = 11223034, upload-time = "2026-08-05T19:21:53.789Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/91/9c/ce847620134cfab903e75690c498af73b46abbede2912ea89bd76d5c1e76/django-6.1-py3-none-any.whl", hash = "sha256:6c132cd980c9392b06807d4ca52d72530d631dc65a85d9dacede00a780cefbbe", size = 8417399, upload-time = "2026-08-05T19:21:47.285Z" },
-]
-
-[[package]]
-name = "django-cf-turnstile"
-version = "0.2.0"
-source = { editable = "." }
-dependencies = [
-    { name = "django", version = "5.2.18", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
-    { name = "django", version = "6.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
-    { name = "niquests" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "pytest" },
-    { name = "pytest-django" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "django", specifier = ">=5.2" },
-    { name = "niquests", specifier = ">=3.21.2" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "pytest", specifier = ">=9.1.1" },
-    { name = "pytest-django", specifier = ">=4.14.0" },
 ]
 
 [[package]]

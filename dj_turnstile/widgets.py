@@ -7,7 +7,7 @@ from .constants import RESPONSE_FIELD_NAME
 
 
 class TurnstileWidget(Widget):
-    template_name = "django_cf_turnstile/turnstile.html"
+    template_name = "dj_turnstile/turnstile.html"
 
     def __init__(
         self,
