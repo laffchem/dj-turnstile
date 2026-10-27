@@ -10,13 +10,15 @@ A reusable Django app that integrates [Cloudflare Turnstile](https://www.cloudfl
 ## Installation
 
 ```bash
-uv add git+https://github.com/laffchem/dj-turnstile.git
+uv add dj-turnstile
+# or
+pip install dj-turnstile
 ```
 
-Or pin to a specific tag:
+To install unreleased changes straight from GitHub:
 
 ```bash
-uv add git+https://github.com/laffchem/dj-turnstile.git@v0.2.0
+uv add git+https://github.com/laffchem/dj-turnstile.git
 ```
 
 ## Setup
