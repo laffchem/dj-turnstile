@@ -120,10 +120,6 @@ class ContactForm(forms.Form):
 
 `dj_turnstile.signals.turnstile_validation_complete` is sent after each siteverify call with `response_data` (decoded JSON) and `remote_ip`.
 
-### Multiple widgets
-
-`api.js` is injected once per page even when several widgets are rendered.
-
 ## How it works
 
 | Component         | Responsibility                                                                          |
