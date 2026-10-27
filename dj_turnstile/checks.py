@@ -14,10 +14,10 @@ def turnstile_settings_check(app_configs, **kwargs):
                 "dummy test keys and every challenge will pass.",
                 hint=(
                     "Disable TURNSTILE_TESTING in production, or add "
-                    "'django_cf_turnstile.turnstile_test_key_error' to "
+                    "'dj_turnstile.turnstile_test_key_error' to "
                     "SILENCED_SYSTEM_CHECKS."
                 ),
-                id="django_cf_turnstile.turnstile_test_key_error",
+                id="dj_turnstile.turnstile_test_key_error",
             )
         )
     elif missing:
@@ -25,7 +25,7 @@ def turnstile_settings_check(app_configs, **kwargs):
             Error(
                 f"{' and '.join(missing)} not set.",
                 hint="Set your Cloudflare Turnstile keys, or TURNSTILE_TESTING = True.",
-                id="django_cf_turnstile.turnstile_keys_missing",
+                id="dj_turnstile.turnstile_keys_missing",
             )
         )
     return messages

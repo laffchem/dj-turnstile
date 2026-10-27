@@ -1,4 +1,4 @@
-# django-cf-turnstile
+# dj-turnstile
 
 A reusable Django app that integrates [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/) into Django forms. Drop in a form field and widget, server-side verification is handled automatically. I wrote this for myself so I don't have to keep reimplimenting this at work.
 
@@ -10,13 +10,13 @@ A reusable Django app that integrates [Cloudflare Turnstile](https://www.cloudfl
 ## Installation
 
 ```bash
-uv add git+https://github.com/laffchem/django_cf_turnstile.git
+uv add git+https://github.com/laffchem/dj-turnstile.git
 ```
 
 Or pin to a specific tag:
 
 ```bash
-uv add git+https://github.com/laffchem/django_cf_turnstile.git@v0.2.0
+uv add git+https://github.com/laffchem/dj-turnstile.git@v0.2.0
 ```
 
 ## Setup
@@ -36,7 +36,7 @@ TURNSTILE_SECRET  = "your-secret-key"
 Add the app so its template and system check are discovered:
 
 ```python
-INSTALLED_APPS = [..., "django_cf_turnstile"]
+INSTALLED_APPS = [..., "dj_turnstile"]
 ```
 
 Both keys are required: if either is unset, the field and widget raise `ImproperlyConfigured` and a system check reports an error.
@@ -47,7 +47,7 @@ For local development and tests you can opt in to Cloudflare's [dummy test keys]
 TURNSTILE_TESTING = True  # default False; real keys, if set, still take precedence
 ```
 
-While `TURNSTILE_TESTING` is on, a system check warns (`django_cf_turnstile.turnstile_test_key_error`, silenceable via `SILENCED_SYSTEM_CHECKS`). Keep it off in production.
+While `TURNSTILE_TESTING` is on, a system check warns (`dj_turnstile.turnstile_test_key_error`, silenceable via `SILENCED_SYSTEM_CHECKS`). Keep it off in production.
 
 ### Optional settings
 
@@ -64,7 +64,7 @@ Add `TurnstileField` to any Django form:
 
 ```python
 from django import forms
-from django_cf_turnstile.fields import TurnstileField
+from dj_turnstile.fields import TurnstileField
 
 class ContactForm(forms.Form):
     name    = forms.CharField()
@@ -116,7 +116,7 @@ class ContactForm(forms.Form):
 
 ### Signal
 
-`django_cf_turnstile.signals.turnstile_validation_complete` is sent after each siteverify call with `response_data` (decoded JSON) and `remote_ip`.
+`dj_turnstile.signals.turnstile_validation_complete` is sent after each siteverify call with `response_data` (decoded JSON) and `remote_ip`.
 
 ### Multiple widgets
 

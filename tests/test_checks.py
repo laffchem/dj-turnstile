@@ -1,7 +1,7 @@
 from django.core.checks import run_checks
 
-TESTING_ID = "django_cf_turnstile.turnstile_test_key_error"
-MISSING_ID = "django_cf_turnstile.turnstile_keys_missing"
+TESTING_ID = "dj_turnstile.turnstile_test_key_error"
+MISSING_ID = "dj_turnstile.turnstile_keys_missing"
 
 
 def _ids():

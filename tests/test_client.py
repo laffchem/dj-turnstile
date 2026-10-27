@@ -1,4 +1,4 @@
-from django_cf_turnstile import client
+from dj_turnstile import client
 
 
 def test_submit_sends_optional_params_and_settings(settings, mock_post):

@@ -8,7 +8,7 @@ DATABASES = {
 INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.auth",
-    "django_cf_turnstile",
+    "dj_turnstile",
 ]
 
 TEMPLATES = [

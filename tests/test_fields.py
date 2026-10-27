@@ -3,7 +3,7 @@ import pytest
 from django import forms
 from django.core.exceptions import ImproperlyConfigured, ValidationError
 
-from django_cf_turnstile.fields import TurnstileField
+from dj_turnstile.fields import TurnstileField
 
 
 class DummyForm(forms.Form):
